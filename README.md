@@ -6,3 +6,4 @@
 * [IceCreamShop](http://www.raywenderlich.com/97014/use-cocoapods-with-swift) in Swift 2.0 and Xcode 7 beta 5.
 * NSTimerTutorial - Learn how to use NSTimer.
 * ShowAlert - Using new `UIAlertController` to show alert or action sheet.
+* [Alamofire Tutorial](http://www.raywenderlich.com/85080/beginning-alamofire-tutorial) in Swift 2.0 (release) and Xcode 7.0 (release) and Alamofire 2.0.2.
