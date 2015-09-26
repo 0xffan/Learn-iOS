@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b4m-99-H2y">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="AvenirNext.ttc">
+            <string>AvenirNext-DemiBold</string>
+            <string>AvenirNext-Medium</string>
+            <string>AvenirNext-Medium</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--Inspirations Collection View Controller-->
+        <scene sceneID="WhE-M9-Jga">
+            <objects>
+                <collectionViewController id="b4m-99-H2y" customClass="InspirationsCollectionViewController" customModule="Ultravisual" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SVU-Bh-1dt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewLayout key="collectionViewLayout" id="tLd-0P-nkU" customClass="UltravisualLayout" customModule="Ultravisual" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InspirationCell" id="cbb-Hp-lvn" customClass="InspirationCell" customModule="Ultravisual" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMG-DS-EsK">
+                                            <rect key="frame" x="0.0" y="-40" width="200" height="280"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="280" id="aXB-n2-cL9"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5F9-qz-mvH">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inspiration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rv-s3-2zB">
+                                            <rect key="frame" x="0.0" y="78" width="200" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="FDq-V4-WV8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="38"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time, Room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-kK-xb8">
+                                            <rect key="frame" x="0.0" y="122" width="200" height="23.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uza-b1-6VZ">
+                                            <rect key="frame" x="0.0" y="145.5" width="200" height="23.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="0tA-kK-xb8" firstAttribute="top" secondItem="2rv-s3-2zB" secondAttribute="bottom" id="3wl-Iw-a9g"/>
+                                    <constraint firstItem="RMG-DS-EsK" firstAttribute="centerY" secondItem="cbb-Hp-lvn" secondAttribute="centerY" id="7QG-hT-cao"/>
+                                    <constraint firstItem="RMG-DS-EsK" firstAttribute="leading" secondItem="cbb-Hp-lvn" secondAttribute="leading" id="8AM-3s-vC1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uza-b1-6VZ" secondAttribute="trailing" id="8Th-UH-9TQ"/>
+                                    <constraint firstItem="2rv-s3-2zB" firstAttribute="leading" secondItem="cbb-Hp-lvn" secondAttribute="leading" id="FzG-EA-g8R"/>
+                                    <constraint firstAttribute="trailing" secondItem="5F9-qz-mvH" secondAttribute="trailing" id="HO4-o6-joe"/>
+                                    <constraint firstItem="5F9-qz-mvH" firstAttribute="leading" secondItem="cbb-Hp-lvn" secondAttribute="leading" id="MIq-pJ-eRd"/>
+                                    <constraint firstItem="Uza-b1-6VZ" firstAttribute="leading" secondItem="cbb-Hp-lvn" secondAttribute="leading" id="O4j-p1-gSL"/>
+                                    <constraint firstAttribute="trailing" secondItem="RMG-DS-EsK" secondAttribute="trailing" id="UfC-i8-CBa"/>
+                                    <constraint firstAttribute="trailing" secondItem="0tA-kK-xb8" secondAttribute="trailing" id="XB7-B6-cVM"/>
+                                    <constraint firstItem="0tA-kK-xb8" firstAttribute="leading" secondItem="cbb-Hp-lvn" secondAttribute="leading" id="fik-oB-c1o"/>
+                                    <constraint firstAttribute="trailing" secondItem="2rv-s3-2zB" secondAttribute="trailing" id="gfj-x4-yrJ"/>
+                                    <constraint firstItem="5F9-qz-mvH" firstAttribute="top" secondItem="cbb-Hp-lvn" secondAttribute="top" id="p4R-Vx-lv9"/>
+                                    <constraint firstItem="Uza-b1-6VZ" firstAttribute="top" secondItem="0tA-kK-xb8" secondAttribute="bottom" id="pdL-9p-NOf"/>
+                                    <constraint firstItem="2rv-s3-2zB" firstAttribute="centerY" secondItem="cbb-Hp-lvn" secondAttribute="centerY" id="qSM-QT-2Im"/>
+                                    <constraint firstAttribute="bottom" secondItem="5F9-qz-mvH" secondAttribute="bottom" id="wln-8f-9dj"/>
+                                </constraints>
+                                <size key="customSize" width="200" height="200"/>
+                                <connections>
+                                    <outlet property="imageCoverView" destination="5F9-qz-mvH" id="JVG-vD-7kO"/>
+                                    <outlet property="imageView" destination="RMG-DS-EsK" id="UyK-WH-Os6"/>
+                                    <outlet property="speakerLabel" destination="Uza-b1-6VZ" id="QUJ-KV-yYK"/>
+                                    <outlet property="timeAndRoomLabel" destination="0tA-kK-xb8" id="Bkx-MT-vg7"/>
+                                    <outlet property="titleLabel" destination="2rv-s3-2zB" id="XzN-7L-RN6"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="b4m-99-H2y" id="lr1-VQ-yvs"/>
+                            <outlet property="delegate" destination="b4m-99-H2y" id="heI-2v-z7O"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IP4-y7-uea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="289"/>
+        </scene>
+    </scenes>
+</document>
