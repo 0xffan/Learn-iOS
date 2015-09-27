@@ -7,6 +7,25 @@
 //
 
 import Foundation
+import Alamofire
+
+extension Alamofire.Request {
+	public static func imageResponseSerializer() -> GenericResponseSerializer<UIImage> {
+		return GenericResponseSerializer(serializeResponse: { (request, response, data) -> Result<UIImage> in
+			guard data != nil else {
+				return Result.Failure(data, NSError(domain: "com.xxx.AlamofireTutorial", code: -70001, userInfo: nil))
+			}
+			
+			let image = UIImage(data: data!, scale: UIScreen.mainScreen().scale)
+			
+			return Result.Success(image!)
+		})
+	}
+	
+	public func responseImage(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, Result<UIImage>) -> Void) -> Self {
+		return response(responseSerializer: Request.imageResponseSerializer(), completionHandler: completionHandler)
+	}
+}
 
 struct Five100px {
 	enum ImageSize: Int {
@@ -15,6 +34,37 @@ struct Five100px {
 		case Medium = 3
 		case Large = 4
 		case XLarge = 5
+	}
+	
+	enum Router: URLRequestConvertible {
+		static let baseURLString = "https://api.500px.com/v1"
+		static let consumerKey = "qzzP3JPuDIUzD9GiiXKE8mhq1Cw6GNj06p3PbEGz"
+		
+		case PopularPhotos(Int)
+		case PhotoInfo(Int, ImageSize)
+		case Comments(Int, Int)
+		
+		var URLRequest: NSMutableURLRequest {
+			let requestInfo: (path: String, parameters: [String: AnyObject]) = {
+				switch self {
+				case .PopularPhotos(let page):
+					let params = ["consumer_key":Router.consumerKey, "page":"\(page)", "feature":"popular", "rpp":"50", "include_store":"store_download", "include_states":"votes"]
+					return ("/photos", params)
+				case .PhotoInfo(let photoID, let imageSize):
+					let params = ["consumer_key":Router.consumerKey, "image_size":"\(imageSize.rawValue)"]
+					return ("/photos/\(photoID)", params)
+				case .Comments(let photoID, let commentsPage):
+					let params = ["consumer_key":Router.consumerKey, "comments":"1", "comments_page":"\(commentsPage)"]
+					return ("/photos/\(photoID)/comments", params)
+				}
+			}()
+			
+			let URL = NSURL(string: Router.baseURLString)
+			let URLRequest = NSURLRequest(URL: URL!.URLByAppendingPathComponent(requestInfo.path))
+			let encoding = Alamofire.ParameterEncoding.URL
+			
+			return encoding.encode(URLRequest, parameters: requestInfo.parameters).0
+		}
 	}
 }
 

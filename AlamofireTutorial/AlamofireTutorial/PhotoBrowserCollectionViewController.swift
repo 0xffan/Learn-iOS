@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-private let reuseIdentifier = "Cell"
+import Alamofire
 
 class PhotoBrowserCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 	
@@ -16,14 +15,21 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 	
 	let refreshControl = UIRefreshControl()
 	
+	var populatingPhotos = false
+	var currentPage = 1
+	
 	let PhotoBrowserCellIdentifier = "PhotoBrowserCell"
 	let PhotoBrowserFooterViewIdentifier = "PhotoBrowserFooterView"
+	
+	let five100ConsumerKey = "qzzP3JPuDIUzD9GiiXKE8mhq1Cw6GNj06p3PbEGz"
 
 	// MARK: Life-cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
+		
+		populatePhotos()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +62,18 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserCellIdentifier, forIndexPath: indexPath) as! PhotoBrowserCollectionViewCell
-    
+		
+		let imageURL = (photos.objectAtIndex(indexPath.row) as! PhotoInfo).url
+		
+		cell.imageView.image = nil
+		cell.request?.cancel()
+		
+		cell.request = Alamofire.request(.GET, imageURL).responseImage { (request, response, result) -> Void in
+			if result.isSuccess {
+				cell.imageView.image = result.value
+			}
+		}
+		
         return cell
     }
 	
@@ -91,6 +108,42 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		refreshControl.tintColor = UIColor.whiteColor()
 		refreshControl.addTarget(self, action: "handleRefresh", forControlEvents: .ValueChanged)
 		collectionView!.addSubview(refreshControl)
+	}
+	
+	override func scrollViewDidScroll(scrollView: UIScrollView) {
+		if scrollView.contentOffset.y + view.frame.size.height > scrollView.contentSize.height * 0.8 {
+			populatePhotos()
+		}
+	}
+	
+	func populatePhotos() {
+		guard !populatingPhotos else { return }
+		populatingPhotos = true
+
+		Alamofire.request(Five100px.Router.PopularPhotos(self.currentPage)).responseJSON { (request, response, result) -> Void in
+			if result.isSuccess {
+				dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+					let photoInfos = (result.value?.valueForKey("photos") as! [NSDictionary]).filter({
+						$0["nsfw"] as! Bool == false
+					}).map {
+						PhotoInfo(id: $0["id"] as! Int, url: $0["image_url"] as! String)
+					}
+					
+					let lastItem = self.photos.count
+					self.photos.addObjectsFromArray(photoInfos)
+					
+					let indexPaths = (lastItem..<self.photos.count).map { NSIndexPath(forItem: $0, inSection: 0)}
+					
+					dispatch_async(dispatch_get_main_queue()) {
+						self.collectionView?.insertItemsAtIndexPaths(indexPaths)
+					}
+					
+					self.currentPage++
+				}
+			}
+			
+			self.populatingPhotos = false
+		}
 	}
 	
 	func handleRefresh() {
@@ -132,6 +185,7 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 
 class PhotoBrowserCollectionViewCell: UICollectionViewCell {
 	let imageView = UIImageView()
+	var request: Alamofire.Request?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
