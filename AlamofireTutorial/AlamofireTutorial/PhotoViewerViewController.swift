@@ -65,11 +65,17 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 		scrollView.minimumZoomScale = 1.0
 		scrollView.maximumZoomScale = 3.0
 		scrollView.zoomScale = 1.0
-		view.addSubview(scrollView)
+		scrollView.showsHorizontalScrollIndicator = false
+		scrollView.showsVerticalScrollIndicator = false
 		
 		imageView.contentMode = .ScaleAspectFill
-		view.addSubview(imageView)
 		
+		scrollView.addSubview(imageView)
+		view.addSubview(scrollView)
+		
+//		imageView.contentMode = .ScaleAspectFill
+//		view.addSubview(imageView)
+
 		let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
 		doubleTapRecognizer.numberOfTapsRequired = 2
 		doubleTapRecognizer.numberOfTouchesRequired = 1
@@ -236,8 +242,13 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 	// MARK: Gesture Recognizer
 	
 	func handleDoubleTap(gestureRecognizer: UIGestureRecognizer) {
-		let pointInView = gestureRecognizer.locationInView(self.imageView)
-		self.zoomInZoomOut(pointInView)
+		UIView.animateWithDuration(0.4) { () -> Void in
+			let newZoomScale = self.scrollView.zoomScale > (self.scrollView.maximumZoomScale / 2) ? self.scrollView.minimumZoomScale : self.scrollView.maximumZoomScale
+			self.scrollView.zoomScale = newZoomScale
+		}
+		
+//		let pointInView = gestureRecognizer.locationInView(self.imageView)
+//		self.zoomInZoomOut(pointInView)
 	}
 	
 	// MARK: ScrollView
