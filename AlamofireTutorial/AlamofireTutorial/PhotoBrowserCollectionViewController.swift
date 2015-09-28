@@ -15,6 +15,8 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 	
 	let refreshControl = UIRefreshControl()
 	
+	let imageCache = NSCache()
+	
 	var populatingPhotos = false
 	var currentPage = 1
 	
@@ -65,12 +67,18 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		
 		let imageURL = (photos.objectAtIndex(indexPath.row) as! PhotoInfo).url
 		
-		cell.imageView.image = nil
 		cell.request?.cancel()
 		
-		cell.request = Alamofire.request(.GET, imageURL).responseImage { (request, response, result) -> Void in
-			if result.isSuccess {
-				cell.imageView.image = result.value
+		if let image = imageCache.objectForKey(imageURL) as? UIImage {
+			cell.imageView.image = image
+		} else {
+			cell.imageView.image = nil
+			
+			cell.request = Alamofire.request(.GET, imageURL).validate(contentType: ["image/*"]).responseImage { (request, response, result) -> Void in
+				if result.isSuccess {
+					self.imageCache.setObject(result.value!, forKey: request!.URLString)
+					cell.imageView.image = result.value
+				}
 			}
 		}
 		
@@ -147,7 +155,16 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 	}
 	
 	func handleRefresh() {
+		refreshControl.beginRefreshing()
 		
+		self.photos.removeAllObjects()
+		self.currentPage = 1
+		
+		self.collectionView?.reloadData()
+		
+		refreshControl.endRefreshing()
+		
+		populatePhotos()
 	}
 
     // MARK: UICollectionViewDelegate

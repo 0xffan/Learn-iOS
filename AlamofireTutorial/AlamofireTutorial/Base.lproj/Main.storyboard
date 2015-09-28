@@ -16,6 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="DdR-zY-22b" kind="relationship" relationship="viewControllers" id="aD6-Pf-Kmv"/>
@@ -34,6 +39,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="5qc-fD-fIf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="yCm-RL-MY1" kind="relationship" relationship="rootViewController" id="rM3-iw-0ec"/>
@@ -181,7 +187,9 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <blurEffect style="light"/>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>
@@ -217,15 +225,15 @@
         <!--Photo Comments View Controller-->
         <scene sceneID="xgq-Bz-GXP">
             <objects>
-                <tableViewController id="yCv-Kt-utM" customClass="PhotoCommentsViewController" customModule="AlamofireTutorial" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" id="Emx-pn-l3k">
+                <tableViewController storyboardIdentifier="PhotoComments" id="yCv-Kt-utM" customClass="PhotoCommentsViewController" customModule="AlamofireTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" id="Emx-pn-l3k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="66" id="Ass-OP-Gv8" customClass="PhotoCommentTableViewCell" customModule="AlamofireTutorial" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" id="Ass-OP-Gv8" customClass="PhotoCommentTableViewCell" customModule="AlamofireTutorial" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ass-OP-Gv8" id="Rwb-3T-XFj">
@@ -292,6 +300,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="yMZ-x0-26i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="wKQ-UB-Utc" kind="relationship" relationship="rootViewController" id="3Ht-C2-OwX"/>

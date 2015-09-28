@@ -9,6 +9,48 @@
 import Foundation
 import Alamofire
 
+public protocol ResponseObjectSerializable {
+	init?(response: NSHTTPURLResponse, representation: AnyObject)
+}
+
+public protocol ResponseCollectionSerializable {
+	static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
+}
+
+extension Alamofire.Request {
+	public func responseObject<T: ResponseObjectSerializable>(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, Result<T>) -> Void) -> Self {
+		let responseSerializer = GenericResponseSerializer { (request, response, data) -> Result<T> in
+			let JSONResponseSerializer = Request.JSONResponseSerializer(options: NSJSONReadingOptions.AllowFragments)
+			let result = JSONResponseSerializer.serializeResponse(request, response, data)
+			
+			guard let resp = response where result.isSuccess else {
+				return Result.Failure(data, result.error!)
+			}
+			
+			return Result.Success(T(response: resp, representation: result.value!)!)
+		}
+		
+		return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
+	}
+}
+
+extension Alamofire.Request {
+	public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, Result<[T]>) -> Void) -> Self {
+		let responseSerializer = GenericResponseSerializer { (request, response, data) -> Result<[T]> in
+			let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+			let result = JSONResponseSerializer.serializeResponse(request, response, data)
+			
+			guard let resp = response where result.isSuccess else {
+				return Result.Failure(data, result.error!)
+			}
+			
+			return Result.Success(T.collection(response: resp, representation: result.value!))
+		}
+		
+		return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
+	}
+}
+
 extension Alamofire.Request {
 	public static func imageResponseSerializer() -> GenericResponseSerializer<UIImage> {
 		return GenericResponseSerializer(serializeResponse: { (request, response, data) -> Result<UIImage> in
@@ -68,7 +110,7 @@ struct Five100px {
 	}
 }
 
-class PhotoInfo: NSObject {
+class PhotoInfo: NSObject, ResponseObjectSerializable {
 	let id: Int
 	let url: String
 	
@@ -113,7 +155,7 @@ class PhotoInfo: NSObject {
 	}
 }
 
-class Comment {
+final class Comment: ResponseCollectionSerializable {
 	let userFullname: String
 	let userPictureURL: String
 	let commentBody: String
@@ -122,5 +164,15 @@ class Comment {
 		userFullname = JSON.valueForKeyPath("user.fullname") as! String
 		userPictureURL = JSON.valueForKeyPath("user.userpic_url") as! String
 		commentBody = JSON.valueForKeyPath("body") as! String
+	}
+	
+	static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Comment] {
+		var comments = [Comment]()
+		
+		for JSONComment in representation.valueForKey("comments") as! [NSDictionary] {
+			comments.append(Comment(JSON: JSONComment))
+		}
+		
+		return comments
 	}
 }

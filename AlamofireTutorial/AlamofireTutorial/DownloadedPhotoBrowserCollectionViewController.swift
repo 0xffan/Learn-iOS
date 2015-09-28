@@ -25,7 +25,7 @@ class DownloadedPhotoBrowserCollectionViewController: UICollectionViewController
 		collectionView?.collectionViewLayout = layout
 		
 		// Register cell classes
-		self.collectionView!.registerClass(PhotoBrowserCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: downloadedPhotoBrowserCellIdentifier)
+		self.collectionView!.registerClass(DownloadedPhotoBrowserCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: downloadedPhotoBrowserCellIdentifier)
 		
 		navigationController?.title = "Downloads"
     }

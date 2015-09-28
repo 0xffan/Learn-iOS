@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopoverPresentationControllerDelegate, UIActionSheetDelegate {
 	
@@ -25,7 +26,33 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 
         // Do any additional setup after loading the view.
 		setupView()
+		
+		loadPhoto()
     }
+	
+	func loadPhoto() {
+		Alamofire.request(Five100px.Router.PhotoInfo(self.photoID, .Large)).validate().responseObject { (request, response, result: Result<PhotoInfo>) -> Void in
+			guard result.isSuccess else { return }
+			
+			self.photoInfo = result.value
+			
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				self.addButtomBar()
+				self.title = self.photoInfo!.name
+			})
+			
+			Alamofire.request(.GET, self.photoInfo!.url).validate().responseImage({ (_, _, result) -> Void in
+				guard result.isSuccess else { return }
+				
+				self.imageView.image = result.value
+				self.imageView.frame = self.centerFrameFromImage(result.value)
+				
+				self.spinner.stopAnimating()
+				
+				self.centerScrollViewContents()
+			})
+		}
+	}
 	
 	func setupView() {
 		spinner.center = CGPoint(x: view.center.x, y: (view.center.y - view.bounds.origin.y) / 2.0)
@@ -69,7 +96,7 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
     
 	// MARK: Bottom Bar
 	
-	func addButtonBar() {
+	func addButtomBar() {
 		var items = [UIBarButtonItem]()
 		
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
@@ -88,6 +115,8 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 		items.append(barButtonItemWithImageNamed("heart", title: "\(photoInfo?.favoritesCount ?? 0)"))
 		
 		self.setToolbarItems(items, animated: true)
+		navigationController?.toolbar?.barTintColor = UIColor.blackColor()
+		navigationController?.toolbar?.tintColor = UIColor.whiteColor()
 		navigationController?.setToolbarHidden(false, animated: true)
 	}
 	
@@ -101,7 +130,7 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 	}
 	
 	func showComments() {
-		let photoCommentsViewController = storyboard?.instantiateViewControllerWithIdentifier("PhotoComment") as? PhotoCommentsViewController
+		let photoCommentsViewController = storyboard?.instantiateViewControllerWithIdentifier("PhotoComments") as? PhotoCommentsViewController
 		photoCommentsViewController?.modalPresentationStyle = .Popover
 		photoCommentsViewController?.modalTransitionStyle = .CoverVertical
 		photoCommentsViewController?.photoID = photoID
@@ -148,7 +177,31 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 	// MARK: Download Photos
 	
 	func downloadPhoto() {
-		
+		Alamofire.request(Five100px.Router.PhotoInfo(self.photoID, .XLarge)).validate().responseObject { (_, _, result: Result<PhotoInfo>) -> Void in
+			guard result.isSuccess else { return }
+			
+			let imageURL = result.value!.url
+			// let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
+			let destination: (NSURL, NSHTTPURLResponse) -> (NSURL) = {
+				temporaryURL, response in
+				let directoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+				return directoryURL.URLByAppendingPathComponent("\(self.photoID).\(response.suggestedFilename)")
+			}
+			
+			let progressIndicatorView = UIProgressView(frame: CGRect(x: 0.0, y: 80.0, width: self.view.bounds.width, height: 10.0))
+			progressIndicatorView.tintColor = UIColor.blueColor()
+			self.view.addSubview(progressIndicatorView)
+			
+			Alamofire.download(.GET, imageURL, destination: destination).progress({ (_, totalBytesRead, totalBytesExpectedToRead) -> Void in
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					progressIndicatorView.setProgress(Float(totalBytesRead) / Float(totalBytesExpectedToRead), animated: true)
+					
+					if totalBytesRead == totalBytesExpectedToRead {
+						progressIndicatorView.removeFromSuperview()
+					}
+				})
+			})
+		}
 	}
 	
 	func showActions() {
@@ -206,10 +259,10 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 	}
 	
 	func scrollViewDidZoom(scrollView: UIScrollView) {
-		centerScrollViewContents(scrollView)
+		centerScrollViewContents()
 	}
 	
-	func centerScrollViewContents(scrollView: UIScrollView) {
+	func centerScrollViewContents() {
 		let boundsSize = scrollView.frame
 		var contentsFrame = self.imageView.frame
 		

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PhotoCommentsViewController: UITableViewController {
 	
@@ -19,10 +20,16 @@ class PhotoCommentsViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.estimatedRowHeight = 50.0
 		
 		title = "Comment"
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
+		
+		Alamofire.request(Five100px.Router.Comments(self.photoID, 1)).validate().responseCollection { (_, _, result: Result<[Comment]>) -> Void in
+			guard result.isSuccess else { return }
+			
+			self.comments = result.value
+			self.tableView.reloadData()
+		}
     }
 	
 	func dismiss() {
@@ -43,7 +50,22 @@ class PhotoCommentsViewController: UITableViewController {
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! PhotoCommentTableViewCell
 		
+		cell.userFullnameLabel?.text = comments![indexPath.row].userFullname
+		cell.commentLabel?.text = comments![indexPath.row].commentBody
+		cell.userImageView?.image = nil
+		
+		let imageURL = comments![indexPath.row].userPictureURL
+		Alamofire.request(.GET, imageURL).validate().responseImage { (_, _, result) -> Void in
+			guard result.isSuccess else { return }
+			
+			cell.userImageView.image = result.value
+		}
+		
 		return cell
+	}
+	
+	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return 50.0
 	}
 
     /*
