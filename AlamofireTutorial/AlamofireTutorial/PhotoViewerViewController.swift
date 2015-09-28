@@ -152,6 +152,7 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 	
 	func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
 		let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
+		navigationController.navigationBar.barStyle = .Black
 		return navigationController
 	}
 	

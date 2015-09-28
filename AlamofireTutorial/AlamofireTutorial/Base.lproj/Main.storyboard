@@ -226,7 +226,7 @@
         <scene sceneID="xgq-Bz-GXP">
             <objects>
                 <tableViewController storyboardIdentifier="PhotoComments" id="yCv-Kt-utM" customClass="PhotoCommentsViewController" customModule="AlamofireTutorial" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" id="Emx-pn-l3k">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" id="Emx-pn-l3k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -234,10 +234,10 @@
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentCell" id="Ass-OP-Gv8" customClass="PhotoCommentTableViewCell" customModule="AlamofireTutorial" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="66"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ass-OP-Gv8" id="Rwb-3T-XFj">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ULN-cE-Bed">
@@ -254,7 +254,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-ZJ-DwC" userLabel="Comment Label">
-                                            <rect key="frame" x="56" y="23" width="536" height="40"/>
+                                            <rect key="frame" x="56" y="23" width="536" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="iTu-2Q-GZM"/>
                                             </constraints>
@@ -266,6 +266,7 @@
                                     <constraints>
                                         <constraint firstItem="ULN-cE-Bed" firstAttribute="top" secondItem="Rwb-3T-XFj" secondAttribute="topMargin" id="3jl-VF-dEm"/>
                                         <constraint firstItem="Sqf-ZJ-DwC" firstAttribute="top" secondItem="XOg-Lg-sSq" secondAttribute="bottom" id="8TT-96-x8J"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Sqf-ZJ-DwC" secondAttribute="bottom" constant="5" id="8Ts-Rq-MZR"/>
                                         <constraint firstItem="ULN-cE-Bed" firstAttribute="leading" secondItem="Rwb-3T-XFj" secondAttribute="leadingMargin" id="ImD-nY-Q0z"/>
                                         <constraint firstItem="XOg-Lg-sSq" firstAttribute="leading" secondItem="ULN-cE-Bed" secondAttribute="trailing" constant="8" id="chz-2Q-WUt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Sqf-ZJ-DwC" secondAttribute="trailing" id="eGH-aO-FbC"/>
@@ -273,6 +274,11 @@
                                         <constraint firstItem="XOg-Lg-sSq" firstAttribute="top" secondItem="Rwb-3T-XFj" secondAttribute="topMargin" id="mVe-s8-gTx"/>
                                         <constraint firstItem="Sqf-ZJ-DwC" firstAttribute="leading" secondItem="ULN-cE-Bed" secondAttribute="trailing" constant="8" id="vg3-Hu-fQQ"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="iAc-2N-Udy"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
