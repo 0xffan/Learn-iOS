@@ -37,7 +37,7 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 			self.photoInfo = result.value
 			
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.addButtomBar()
+				self.addBottomBar()
 				self.title = self.photoInfo!.name
 			})
 			
@@ -102,7 +102,7 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
     
 	// MARK: Bottom Bar
 	
-	func addButtomBar() {
+	func addBottomBar() {
 		var items = [UIBarButtonItem]()
 		
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
@@ -123,6 +123,7 @@ class PhotoViewerViewController: UIViewController, UIScrollViewDelegate, UIPopov
 		self.setToolbarItems(items, animated: true)
 		navigationController?.toolbar?.barTintColor = UIColor.blackColor()
 		navigationController?.toolbar?.tintColor = UIColor.whiteColor()
+		navigationController?.toolbar?.translucent = true
 		navigationController?.setToolbarHidden(false, animated: true)
 	}
 	
