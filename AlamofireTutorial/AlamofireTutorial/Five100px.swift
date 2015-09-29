@@ -80,7 +80,7 @@ struct Five100px {
 	
 	enum Router: URLRequestConvertible {
 		static let baseURLString = "https://api.500px.com/v1"
-		static let consumerKey = "qzzP3JPuDIUzD9GiiXKE8mhq1Cw6GNj06p3PbEGz"
+		static let consumerKey = "****_your_consumer_key_****"
 		
 		case PopularPhotos(Int)
 		case PhotoInfo(Int, ImageSize)
