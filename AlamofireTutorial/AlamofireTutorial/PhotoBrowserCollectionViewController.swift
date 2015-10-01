@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class PhotoBrowserCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PhotoBrowserCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, LiquidCollectionViewLayoutDelegate {
 	
 	var photos = NSMutableOrderedSet()
 	
@@ -76,7 +76,7 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 			
 			cell.request = Alamofire.request(.GET, imageURL).validate(contentType: ["image/*"]).responseImage { (request, response, result) -> Void in
 				if result.isSuccess {
-					self.imageCache.setObject(result.value!, forKey: request!.URLString)
+					self.imageCache.setObject(result.value!, forKey: imageURL)
 					cell.imageView.image = result.value
 				}
 			}
@@ -106,7 +106,10 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		layout.minimumLineSpacing = 1.0
 		layout.footerReferenceSize = CGSize(width: collectionView!.bounds.size.width, height: 100.0)
 		
-		collectionView!.collectionViewLayout = layout
+		let fiquidLayout = LiquidCollectionViewLayout()
+		fiquidLayout.delegate = self
+		
+		collectionView!.collectionViewLayout = fiquidLayout
 		
 		navigationItem.title = "Featured"
 		
@@ -134,11 +137,14 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 					let photoInfos = (result.value?.valueForKey("photos") as! [NSDictionary]).filter({
 						$0["nsfw"] as! Bool == false
 					}).map {
-						PhotoInfo(id: $0["id"] as! Int, url: $0["image_url"] as! String)
+						(photo) -> PhotoInfo in
+						let imageURL = (photo["images"] as! [NSDictionary])[0]["url"] as! String
+						return PhotoInfo(id: photo["id"] as! Int, url: imageURL, width: photo["width"] as? Float, height: photo["height"] as? Float)
 					}
 					
 					let lastItem = self.photos.count
 					self.photos.addObjectsFromArray(photoInfos)
+					self.collectionView?.collectionViewLayout.invalidateLayout()
 					
 					let indexPaths = (lastItem..<self.photos.count).map { NSIndexPath(forItem: $0, inSection: 0)}
 					
@@ -160,11 +166,26 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		self.photos.removeAllObjects()
 		self.currentPage = 1
 		
+		self.collectionView?.collectionViewLayout.invalidateLayout()
 		self.collectionView?.reloadData()
 		
 		refreshControl.endRefreshing()
 		
 		populatePhotos()
+	}
+	
+	// MARK: LiquidCollectionViewDelegate
+	
+	func collectionView(collectionView: UICollectionView?, heightForPhotoAtIndexPath indexPath: NSIndexPath, width: CGFloat) -> CGFloat {
+		
+		guard let photoInfo = self.photos.objectAtIndex(indexPath.item) as? PhotoInfo, let size = photoInfo.size else {
+			return CGFloat(50.0)
+		}
+		
+		let scaleFactor = width / size.width
+		let height = size.height * scaleFactor
+		
+		return height
 	}
 
     // MARK: UICollectionViewDelegate
@@ -214,6 +235,7 @@ class PhotoBrowserCollectionViewCell: UICollectionViewCell {
 		backgroundColor = UIColor(white: 0.1, alpha: 1.0)
 		
 		imageView.frame = bounds
+		self.contentMode = .ScaleAspectFit
 		addSubview(imageView)
 	}
 }

@@ -70,17 +70,20 @@ extension Alamofire.Request {
 }
 
 struct Five100px {
+	// See the document on [photo sizes](https://github.com/500px/api-documentation/blob/master/basics/formats_and_terms.md#image-urls-and-image-sizes)
 	enum ImageSize: Int {
 		case Tiny = 1
 		case Small = 2
 		case Medium = 3
 		case Large = 4
 		case XLarge = 5
+		case MediumUncropped = 30
 	}
 	
 	enum Router: URLRequestConvertible {
 		static let baseURLString = "https://api.500px.com/v1"
-		static let consumerKey = "****_your_consumer_key_****"
+		static let consumerKey = "qzzP3JPuDIUzD9GiiXKE8mhq1Cw6GNj06p3PbEGz"
+		// "****_your_consumer_key_****"
 		
 		case PopularPhotos(Int)
 		case PhotoInfo(Int, ImageSize)
@@ -90,7 +93,7 @@ struct Five100px {
 			let requestInfo: (path: String, parameters: [String: AnyObject]) = {
 				switch self {
 				case .PopularPhotos(let page):
-					let params = ["consumer_key":Router.consumerKey, "page":"\(page)", "feature":"popular", "rpp":"50", "include_store":"store_download", "include_states":"votes"]
+					let params = ["consumer_key":Router.consumerKey, "page":"\(page)", "feature":"popular", "image_size":"\(ImageSize.MediumUncropped.rawValue)", "rpp":"50", "include_store":"store_download", "include_states":"votes"]
 					return ("/photos", params)
 				case .PhotoInfo(let photoID, let imageSize):
 					let params = ["consumer_key":Router.consumerKey, "image_size":"\(imageSize.rawValue)"]
@@ -113,6 +116,8 @@ struct Five100px {
 class PhotoInfo: NSObject, ResponseObjectSerializable {
 	let id: Int
 	let url: String
+	
+	var size: CGSize?
 	
 	var name: String?
 	
@@ -144,6 +149,14 @@ class PhotoInfo: NSObject, ResponseObjectSerializable {
 		self.camera = representation.valueForKeyPath("photo.camera") as? String
 		self.desc = representation.valueForKeyPath("photo.description") as? String
 		self.name = representation.valueForKeyPath("photo.name") as? String
+	}
+	
+	convenience init(id: Int, url: String, width: Float?, height: Float?) {
+		self.init(id: id, url: url)
+		
+		if let width = width, height = height {
+			self.size = CGSize(width: CGFloat(width), height: CGFloat(height))
+		}
 	}
 	
 	override func isEqual(object: AnyObject!) -> Bool {
