@@ -64,6 +64,10 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserCellIdentifier, forIndexPath: indexPath) as! PhotoBrowserCollectionViewCell
+		let cellLayoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItemAtIndexPath(indexPath)
+		cell.frame = cellLayoutAttributes!.frame
+		cell.bounds = cellLayoutAttributes!.bounds
+		cell.imageView.frame = cell.bounds
 		
 		let imageURL = (photos.objectAtIndex(indexPath.row) as! PhotoInfo).url
 		
@@ -81,6 +85,12 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 				}
 			}
 		}
+		
+		print("* * * cell \(indexPath.item) * * *")
+		print("- cell frame:  (x: \(cell.bounds.origin.x), y: \(cell.bounds.origin.y), w: \(cell.bounds.width), h: \(cell.bounds.height))")
+		print("- cell frame:  (x: \(cell.frame.origin.x), y: \(cell.frame.origin.y), w: \(cell.frame.width), h: \(cell.frame.height))")
+		print("- image frame: (x: \(cell.imageView.frame.origin.x), y: \(cell.imageView.frame.origin.y), w: \(cell.imageView.frame.width), h: \(cell.imageView.frame.height))")
+		print("- image bounds:(x: \(cell.imageView.bounds.origin.x), y: \(cell.imageView.bounds.origin.y), w: \(cell.imageView.bounds.width), h: \(cell.bounds.height))")
 		
         return cell
     }
@@ -106,10 +116,10 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		layout.minimumLineSpacing = 1.0
 		layout.footerReferenceSize = CGSize(width: collectionView!.bounds.size.width, height: 100.0)
 		
-		let fiquidLayout = LiquidCollectionViewLayout()
-		fiquidLayout.delegate = self
+		let liquidLayout = LiquidCollectionViewLayout()
+		liquidLayout.delegate = self
 		
-		collectionView!.collectionViewLayout = fiquidLayout
+		collectionView!.collectionViewLayout = liquidLayout
 		
 		navigationItem.title = "Featured"
 		
@@ -184,6 +194,9 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		
 		let scaleFactor = width / size.width
 		let height = size.height * scaleFactor
+		print("* * * item \(indexPath.item): \(photoInfo.id) * * * ")
+		print("photo size: (w:\(size.width), h:\(size.height))")
+		print("computed photo size : (w:\(width), h:\(height))")
 		
 		return height
 	}
@@ -235,7 +248,8 @@ class PhotoBrowserCollectionViewCell: UICollectionViewCell {
 		backgroundColor = UIColor(white: 0.1, alpha: 1.0)
 		
 		imageView.frame = bounds
-		self.contentMode = .ScaleAspectFit
+		imageView.contentMode = .ScaleAspectFill
+		imageView.clipsToBounds = true
 		addSubview(imageView)
 	}
 }

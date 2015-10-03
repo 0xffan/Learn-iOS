@@ -22,7 +22,8 @@ class LiquidCollectionViewLayout: UICollectionViewLayout {
 	private var xOffset = [CGFloat]()
 	private var yOffset = [CGFloat]()
 	
-	let cellPadding: CGFloat = 5.0
+	let cellPadding: CGFloat = 3.0
+	let footerHeight: CGFloat = 100.0
 	var numberOfColumns = 2
 	
 	private var layoutAttributesCache = [UICollectionViewLayoutAttributes]()
@@ -57,13 +58,19 @@ class LiquidCollectionViewLayout: UICollectionViewLayout {
 
 			let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
 			attributes.frame = frame
+			attributes.bounds = CGRect(x: 0.0, y: 0.0, width: cellWidth, height: cellHeight)
 			layoutAttributesCache.append(attributes)
 			
 			contentHeight = max(contentHeight, CGRectGetMaxY(frame) + cellPadding)
 			yOffset[column] = yOffset[column] + cellHeight + cellPadding
 			
 			column = column >= (numberOfColumns - 1) ? 0 : ++column
+			
+			print("* * * item \(item) * * *")
+			print("cell size: (\(cellWidth), \(cellHeight))")
 		}
+		
+		contentHeight += footerHeight
 		
 	}
 	
@@ -84,6 +91,19 @@ class LiquidCollectionViewLayout: UICollectionViewLayout {
 	
 	override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
 		return layoutAttributesCache[indexPath.item]
+	}
+	
+	override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+		
+		if elementKind == UICollectionElementKindSectionFooter {
+			let footerFrame = CGRect(x: xOffset[0], y: contentHeight - footerHeight, width: contentWidth, height: footerHeight)
+			let supplementaryViewLayoutAttributes = UICollectionViewLayoutAttributes()
+			supplementaryViewLayoutAttributes.frame = footerFrame
+
+			return supplementaryViewLayoutAttributes
+		} else {
+			return nil
+		}
 	}
 
 }
