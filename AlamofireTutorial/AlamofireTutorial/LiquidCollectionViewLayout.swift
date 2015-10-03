@@ -65,9 +65,6 @@ class LiquidCollectionViewLayout: UICollectionViewLayout {
 			yOffset[column] = yOffset[column] + cellHeight + cellPadding
 			
 			column = column >= (numberOfColumns - 1) ? 0 : ++column
-			
-			print("* * * item \(item) * * *")
-			print("cell size: (\(cellWidth), \(cellHeight))")
 		}
 		
 		contentHeight += footerHeight

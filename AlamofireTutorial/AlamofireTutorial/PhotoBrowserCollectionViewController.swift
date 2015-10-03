@@ -86,12 +86,6 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 			}
 		}
 		
-		print("* * * cell \(indexPath.item) * * *")
-		print("- cell frame:  (x: \(cell.bounds.origin.x), y: \(cell.bounds.origin.y), w: \(cell.bounds.width), h: \(cell.bounds.height))")
-		print("- cell frame:  (x: \(cell.frame.origin.x), y: \(cell.frame.origin.y), w: \(cell.frame.width), h: \(cell.frame.height))")
-		print("- image frame: (x: \(cell.imageView.frame.origin.x), y: \(cell.imageView.frame.origin.y), w: \(cell.imageView.frame.width), h: \(cell.imageView.frame.height))")
-		print("- image bounds:(x: \(cell.imageView.bounds.origin.x), y: \(cell.imageView.bounds.origin.y), w: \(cell.imageView.bounds.width), h: \(cell.bounds.height))")
-		
         return cell
     }
 	
@@ -194,9 +188,6 @@ class PhotoBrowserCollectionViewController: UICollectionViewController, UICollec
 		
 		let scaleFactor = width / size.width
 		let height = size.height * scaleFactor
-		print("* * * item \(indexPath.item): \(photoInfo.id) * * * ")
-		print("photo size: (w:\(size.width), h:\(size.height))")
-		print("computed photo size : (w:\(width), h:\(height))")
 		
 		return height
 	}
