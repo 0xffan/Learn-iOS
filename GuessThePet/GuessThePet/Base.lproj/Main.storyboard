@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nBo-Ql-5ed">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="E9m-2a-bDM">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="nBo-Ql-5ed" customClass="PageViewController" customModule="GuessThePet" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aJr-BR-r59" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="107" y="270"/>
+        </scene>
+        <!--Card View Controller-->
+        <scene sceneID="Epa-fu-WE0">
+            <objects>
+                <viewController storyboardIdentifier="CardViewController" id="hfx-n0-JtJ" customClass="CardViewController" customModule="GuessThePet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UhT-Q2-Zcg"/>
+                        <viewControllerLayoutGuide type="bottom" id="jQl-QI-aJc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3HX-Yv-Kjb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYl-mK-00N" userLabel="Card View">
+                                <rect key="frame" x="187" y="150" width="225" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7N-de-3vV" userLabel="Title Label">
+                                        <rect key="frame" x="87" y="140" width="51.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="e7N-de-3vV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tYl-mK-00N" secondAttribute="leading" constant="20" id="ZPR-uR-Cle"/>
+                                    <constraint firstAttribute="width" secondItem="tYl-mK-00N" secondAttribute="height" multiplier="3:4" id="a02-gL-m7p"/>
+                                    <constraint firstItem="e7N-de-3vV" firstAttribute="centerX" secondItem="tYl-mK-00N" secondAttribute="centerX" id="dtQ-eI-oTi"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="e7N-de-3vV" secondAttribute="trailing" constant="20" id="nKA-0I-2Pw"/>
+                                    <constraint firstItem="e7N-de-3vV" firstAttribute="centerY" secondItem="tYl-mK-00N" secondAttribute="centerY" id="wLN-Mj-SMR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tYl-mK-00N" firstAttribute="height" secondItem="3HX-Yv-Kjb" secondAttribute="height" multiplier="1/2" id="PjP-HN-g3S"/>
+                            <constraint firstItem="tYl-mK-00N" firstAttribute="centerY" secondItem="3HX-Yv-Kjb" secondAttribute="centerY" id="dlp-Co-Sin"/>
+                            <constraint firstItem="tYl-mK-00N" firstAttribute="centerX" secondItem="3HX-Yv-Kjb" secondAttribute="centerX" id="mqc-cL-F5k"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardView" destination="tYl-mK-00N" id="wLU-51-TQ9"/>
+                        <outlet property="titleLabel" destination="e7N-de-3vV" id="U6X-nx-VLj"/>
+                        <segue destination="7cD-Cj-ZJz" kind="presentation" identifier="revealSegue" id="XOC-wF-asi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NeP-zx-EDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="818" y="270"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="MHZ-yc-1sJ">
+            <objects>
+                <viewController storyboardIdentifier="RevealViewController" id="7cD-Cj-ZJz" customClass="RevealViewController" customModule="GuessThePet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lUC-UX-ckV"/>
+                        <viewControllerLayoutGuide type="bottom" id="poL-FY-uyG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsK-y7-Ogo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-k4-OGZ" userLabel="Title Label">
+                                <rect key="frame" x="279.5" y="46.5" width="41.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kcK-NJ-gVm">
+                                <rect key="frame" x="131.5" y="75" width="337.5" height="450"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kcK-NJ-gVm" secondAttribute="height" multiplier="3:4" id="rdg-VK-IfZ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJ0-gR-zoK">
+                                <rect key="frame" x="263" y="562" width="75" height="30"/>
+                                <state key="normal" title="Start Over!">
+                                    <color key="titleColor" red="1" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissPressed:" destination="7cD-Cj-ZJz" eventType="touchUpInside" id="yjQ-3m-hGe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kcK-NJ-gVm" firstAttribute="centerX" secondItem="tsK-y7-Ogo" secondAttribute="centerX" id="C9B-jt-BlA"/>
+                            <constraint firstItem="poL-FY-uyG" firstAttribute="top" secondItem="wJ0-gR-zoK" secondAttribute="bottom" constant="8" symbolic="YES" id="Lka-y8-3Gy"/>
+                            <constraint firstItem="kcK-NJ-gVm" firstAttribute="height" secondItem="tsK-y7-Ogo" secondAttribute="height" multiplier="3:4" id="Z0l-IO-riU"/>
+                            <constraint firstItem="kcK-NJ-gVm" firstAttribute="centerY" secondItem="tsK-y7-Ogo" secondAttribute="centerY" id="a7e-j2-3Zu"/>
+                            <constraint firstItem="eFq-k4-OGZ" firstAttribute="centerX" secondItem="tsK-y7-Ogo" secondAttribute="centerX" id="ic8-LP-l63"/>
+                            <constraint firstItem="kcK-NJ-gVm" firstAttribute="top" secondItem="eFq-k4-OGZ" secondAttribute="bottom" constant="8" id="vIT-kv-Jt5"/>
+                            <constraint firstItem="wJ0-gR-zoK" firstAttribute="centerX" secondItem="tsK-y7-Ogo" secondAttribute="centerX" id="xJe-bh-NVs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="kcK-NJ-gVm" id="w06-Kr-t2S"/>
+                        <outlet property="titleLabel" destination="eFq-k4-OGZ" id="sYV-9q-bhz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kxM-9g-Icb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1605" y="270"/>
+        </scene>
+    </scenes>
+</document>

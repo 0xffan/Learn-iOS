@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		311ED15B1C4B360D00E849CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED15A1C4B360D00E849CA /* AppDelegate.swift */; };
+		311ED1601C4B360D00E849CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311ED15E1C4B360D00E849CA /* Main.storyboard */; };
+		311ED1621C4B360D00E849CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 311ED1611C4B360D00E849CA /* Assets.xcassets */; };
+		311ED1651C4B360D00E849CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 311ED1631C4B360D00E849CA /* LaunchScreen.storyboard */; };
+		311ED1701C4B374100E849CA /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED16F1C4B374100E849CA /* PageViewController.swift */; };
+		311ED1721C4B378000E849CA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED1711C4B378000E849CA /* CardViewController.swift */; };
+		311ED1741C4B379300E849CA /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED1731C4B379300E849CA /* RevealViewController.swift */; };
+		311ED1771C4B3E5B00E849CA /* PetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED1761C4B3E5B00E849CA /* PetCard.swift */; };
+		311ED17A1C4B3F2C00E849CA /* Pets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 311ED1791C4B3F2C00E849CA /* Pets.plist */; };
+		311ED17C1C4B3F4D00E849CA /* PetCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED17B1C4B3F4D00E849CA /* PetCardStore.swift */; };
+		311ED17F1C4B41E500E849CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED17E1C4B41E500E849CA /* ViewController.swift */; };
+		311ED1811C4B426900E849CA /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ED1801C4B426900E849CA /* AnimationHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		311ED1571C4B360D00E849CA /* GuessThePet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessThePet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		311ED15A1C4B360D00E849CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		311ED15F1C4B360D00E849CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		311ED1611C4B360D00E849CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		311ED1641C4B360D00E849CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		311ED1661C4B360D00E849CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		311ED16F1C4B374100E849CA /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = SOURCE_ROOT; };
+		311ED1711C4B378000E849CA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		311ED1731C4B379300E849CA /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
+		311ED1761C4B3E5B00E849CA /* PetCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetCard.swift; sourceTree = "<group>"; };
+		311ED1791C4B3F2C00E849CA /* Pets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pets.plist; sourceTree = "<group>"; };
+		311ED17B1C4B3F4D00E849CA /* PetCardStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetCardStore.swift; sourceTree = "<group>"; };
+		311ED17E1C4B41E500E849CA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		311ED1801C4B426900E849CA /* AnimationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		311ED1541C4B360D00E849CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		311ED14E1C4B360D00E849CA = {
+			isa = PBXGroup;
+			children = (
+				311ED1591C4B360D00E849CA /* GuessThePet */,
+				311ED1581C4B360D00E849CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		311ED1581C4B360D00E849CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				311ED1571C4B360D00E849CA /* GuessThePet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		311ED1591C4B360D00E849CA /* GuessThePet */ = {
+			isa = PBXGroup;
+			children = (
+				311ED1831C4B509800E849CA /* Animation Controller */,
+				311ED1821C4B508700E849CA /* Interaction Controller */,
+				311ED17D1C4B41B800E849CA /* Helper */,
+				311ED1781C4B3EAA00E849CA /* Data */,
+				311ED1751C4B3E2F00E849CA /* Model */,
+				311ED16E1C4B36A600E849CA /* Bundle Files */,
+				311ED16D1C4B366B00E849CA /* UI */,
+				311ED16C1C4B364700E849CA /* View Controllers */,
+			);
+			path = GuessThePet;
+			sourceTree = "<group>";
+		};
+		311ED16C1C4B364700E849CA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				311ED16F1C4B374100E849CA /* PageViewController.swift */,
+				311ED1711C4B378000E849CA /* CardViewController.swift */,
+				311ED1731C4B379300E849CA /* RevealViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		311ED16D1C4B366B00E849CA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				311ED1631C4B360D00E849CA /* LaunchScreen.storyboard */,
+				311ED15E1C4B360D00E849CA /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		311ED16E1C4B36A600E849CA /* Bundle Files */ = {
+			isa = PBXGroup;
+			children = (
+				311ED15A1C4B360D00E849CA /* AppDelegate.swift */,
+				311ED1611C4B360D00E849CA /* Assets.xcassets */,
+				311ED1661C4B360D00E849CA /* Info.plist */,
+			);
+			name = "Bundle Files";
+			sourceTree = "<group>";
+		};
+		311ED1751C4B3E2F00E849CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				311ED1761C4B3E5B00E849CA /* PetCard.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		311ED1781C4B3EAA00E849CA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				311ED17B1C4B3F4D00E849CA /* PetCardStore.swift */,
+				311ED1791C4B3F2C00E849CA /* Pets.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		311ED17D1C4B41B800E849CA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				311ED17E1C4B41E500E849CA /* ViewController.swift */,
+				311ED1801C4B426900E849CA /* AnimationHelper.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		311ED1821C4B508700E849CA /* Interaction Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Interaction Controller";
+			sourceTree = "<group>";
+		};
+		311ED1831C4B509800E849CA /* Animation Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Animation Controller";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		311ED1561C4B360D00E849CA /* GuessThePet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 311ED1691C4B360D00E849CA /* Build configuration list for PBXNativeTarget "GuessThePet" */;
+			buildPhases = (
+				311ED1531C4B360D00E849CA /* Sources */,
+				311ED1541C4B360D00E849CA /* Frameworks */,
+				311ED1551C4B360D00E849CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GuessThePet;
+			productName = GuessThePet;
+			productReference = 311ED1571C4B360D00E849CA /* GuessThePet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		311ED14F1C4B360D00E849CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = ixfan;
+				TargetAttributes = {
+					311ED1561C4B360D00E849CA = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = DYVK3TN2E4;
+					};
+				};
+			};
+			buildConfigurationList = 311ED1521C4B360D00E849CA /* Build configuration list for PBXProject "GuessThePet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 311ED14E1C4B360D00E849CA;
+			productRefGroup = 311ED1581C4B360D00E849CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				311ED1561C4B360D00E849CA /* GuessThePet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		311ED1551C4B360D00E849CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				311ED17A1C4B3F2C00E849CA /* Pets.plist in Resources */,
+				311ED1651C4B360D00E849CA /* LaunchScreen.storyboard in Resources */,
+				311ED1621C4B360D00E849CA /* Assets.xcassets in Resources */,
+				311ED1601C4B360D00E849CA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		311ED1531C4B360D00E849CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				311ED15B1C4B360D00E849CA /* AppDelegate.swift in Sources */,
+				311ED1771C4B3E5B00E849CA /* PetCard.swift in Sources */,
+				311ED1701C4B374100E849CA /* PageViewController.swift in Sources */,
+				311ED17C1C4B3F4D00E849CA /* PetCardStore.swift in Sources */,
+				311ED17F1C4B41E500E849CA /* ViewController.swift in Sources */,
+				311ED1811C4B426900E849CA /* AnimationHelper.swift in Sources */,
+				311ED1721C4B378000E849CA /* CardViewController.swift in Sources */,
+				311ED1741C4B379300E849CA /* RevealViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		311ED15E1C4B360D00E849CA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				311ED15F1C4B360D00E849CA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		311ED1631C4B360D00E849CA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				311ED1641C4B360D00E849CA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		311ED1671C4B360D00E849CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		311ED1681C4B360D00E849CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		311ED16A1C4B360D00E849CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GuessThePet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.ixfan.GuessThePet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		311ED16B1C4B360D00E849CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GuessThePet/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.ixfan.GuessThePet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		311ED1521C4B360D00E849CA /* Build configuration list for PBXProject "GuessThePet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				311ED1671C4B360D00E849CA /* Debug */,
+				311ED1681C4B360D00E849CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		311ED1691C4B360D00E849CA /* Build configuration list for PBXNativeTarget "GuessThePet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				311ED16A1C4B360D00E849CA /* Debug */,
+				311ED16B1C4B360D00E849CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 311ED14F1C4B360D00E849CA /* Project object */;
+}
