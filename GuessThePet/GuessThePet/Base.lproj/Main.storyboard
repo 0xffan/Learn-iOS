@@ -10,7 +10,7 @@
         <!--Page View Controller-->
         <scene sceneID="E9m-2a-bDM">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="nBo-Ql-5ed" customClass="PageViewController" customModule="GuessThePet" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="nBo-Ql-5ed" customClass="PageViewController" customModule="GuessThePet" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJr-BR-r59" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="107" y="270"/>

@@ -15,6 +15,10 @@ class CardViewController: UIViewController {
 	@IBOutlet private weak var cardView: UIView!
 	@IBOutlet private weak var titleLabel: UILabel!
 
+	private let flipPresentAnimationController = FlipPresentAnimationController()
+	private let flipDismissAnimationController = FlipDismissAnimationController()
+	private let swipeInteractionController = SwipeInteractionController()
+
 	var pageIndex: Int?
 	var petCard: PetCard?
 
@@ -39,12 +43,15 @@ class CardViewController: UIViewController {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
 		if segue.identifier == revealSegueId, let destinationViewController  = segue.destinationViewController as? RevealViewController {
 			destinationViewController.petCard = petCard
+
+			// It’s important to note that it is the view controller being presented that needs a transitioning delegate, not the view controller doing the presenting!
+			destinationViewController.transitioningDelegate = self
+			
+			swipeInteractionController.wireToViewController(destinationViewController)
 		}
     }
 
@@ -52,4 +59,24 @@ class CardViewController: UIViewController {
 		performSegueWithIdentifier(revealSegueId, sender: nil)
 	}
 
+}
+
+// MARK: Transitioning delegate
+
+extension CardViewController: UIViewControllerTransitioningDelegate {
+	func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+		flipPresentAnimationController.originFrame = cardView.frame
+		return flipPresentAnimationController
+	}
+
+	func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+		flipDismissAnimationController.destinationFrame = cardView.frame
+		return flipDismissAnimationController
+	}
+
+	func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+		return swipeInteractionController.interactionInProgress ? swipeInteractionController : nil
+	}
 }
